@@ -1,12 +1,12 @@
 # Trading Helper
 App that help traders to track the price of trading instruments. It sends notifications to telegram if the price hits specified value.
 ## How to run?
-1. Create .env file in the root directory with the following content.
+1. Create .env file in the root directory with the following content:
    ```
    SECRET_KEY=<DJANGO SECRET KEY>
    DEBUG=<DJANGO DEBUG MODE>        # Allowed values: True, False.
    ```
-2. Move to `docker` directory
+2. Move to `docker` directory:
    ```
    cd docker/
    ```
