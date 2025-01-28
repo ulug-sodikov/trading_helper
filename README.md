@@ -1,5 +1,5 @@
 # Trading Helper
-Django App that help traders to track the price of trading instruments. It sends notifications to telegram if the price hits specified value.
+App that help traders to track the price of trading instruments. It sends notifications to telegram if the price hits specified value.
 ## How to run?
 1. Create .env file in the root directory with the following content.
    ```
