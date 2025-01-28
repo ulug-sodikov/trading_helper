@@ -1,1 +1,0 @@
-docker build -t trading_helper_web .

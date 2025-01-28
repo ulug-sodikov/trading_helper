@@ -3,10 +3,11 @@ services:
         image: trading_helper_web
         container_name: trading_helper_web_service
         volumes:
-            - .:/usr/src/app
+            - ../trading_helper_web:/usr/src/app/trading_helper_web
+            - ../.env:/usr/src/app/.env
         working_dir: /usr/src/app
         command: [
-            "python3", "trading_helper/manage.py", "runserver", "0.0.0.0:8000"
+            "python3", "trading_helper_web/manage.py", "runserver", "0.0.0.0:8000"
         ]
         ports:
             - "8000:8000"
