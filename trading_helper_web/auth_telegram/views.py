@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
 
-# Create your views here.
+
+def index(request):
+    return HttpResponse(loader.render_to_string('auth_telegram/index.html'))

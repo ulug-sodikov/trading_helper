@@ -10,4 +10,4 @@ services:
             "python3", "trading_helper_web/manage.py", "runserver", "0.0.0.0:8000"
         ]
         ports:
-            - "8000:8000"
+            - "127.0.0.77:80:8000"

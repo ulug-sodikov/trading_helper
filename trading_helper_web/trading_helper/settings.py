@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    "auth_telegram.apps.AuthTelegramConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
