@@ -9,10 +9,10 @@ App that help traders to track the price of trading instruments. It sends notifi
 3. Send the `/setdomain` command to `@Botfather` to link `www.tradinghelper.com` domain to newly created bot.
 4. Create .env file in the root directory with the following content:
    ```
-   SECRET_KEY=<DJANGO SECRET KEY>
-   DEBUG=<DJANGO DEBUG MODE>        # Allowed values: True, False.
+   SECRET_KEY=<DJANGO_SECRET_KEY>
+   DEBUG=<DJANGO_DEBUG_MODE>        # Allowed values: True, False.
    
-   TG_BOT_USERNAME=<USERNAME OF YOUR TG BOT>
+   TG_BOT_USERNAME=<USERNAME_OF_YOUR_TG_BOT>
    ```
 5. Move to `docker` directory:
    ```
