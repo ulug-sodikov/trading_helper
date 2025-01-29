@@ -1,29 +1,37 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login with Telegram</title>
+    <link rel="stylesheet" href="{% static 'auth_telegram/style.css' %}">
 </head>
-<body>
-    <div id="telegram_user_id">
-        Telegram user_id.
+<body class="auth-telegram-page">
+    <div class="auth-telegram-container">
+        <div class="auth-telegram">
+            <div id="telegram_user_id">
+                Login via Telegram
+            </div>
+            <script
+                async
+                src="https://telegram.org/js/telegram-widget.js?22"
+                data-telegram-login="{{ tg_bot_username }}"
+                data-size="large"
+                data-userpic="false"
+                data-onauth="onTelegramAuth(user)"
+                data-request-access="write"
+            ></script>
+            <script type="text/javascript">
+                function onTelegramAuth(user) {
+                    const div = document.getElementById('telegram_user_id');
+                    div.textContent = user.id;
+                    console.log(user);
+                }
+            </script>
+            {# TODO: verify the authentication and the integrity of the data #}
+            {# https://core.telegram.org/widgets/login#checking-authorization #}
+        </div>
     </div>
-    <script
-        async
-        src="https://telegram.org/js/telegram-widget.js?22"
-        data-telegram-login="{{ tg_bot_username }}"
-        data-size="large"
-        data-userpic="false"
-        data-onauth="onTelegramAuth(user)"
-        data-request-access="write"
-    ></script>
-    <script type="text/javascript">
-        function onTelegramAuth(user) {
-            const div = document.getElementById('telegram_user_id');
-            div.textContent = user.id;
-        }
-    </script>
-    {# TODO: verify the authentication and the integrity of the data #}
-    {# https://core.telegram.org/widgets/login#checking-authorization #}
 </body>
 </html>

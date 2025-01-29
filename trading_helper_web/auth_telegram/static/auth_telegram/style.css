@@ -1,0 +1,29 @@
+.auth-telegram-page {
+    background-color: #F5F5F5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-telegram-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 8rem;
+}
+
+.auth-telegram {
+    background-color: white;
+    width: 15rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: silver 2px 2px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+}
