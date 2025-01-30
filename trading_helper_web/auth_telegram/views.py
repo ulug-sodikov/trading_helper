@@ -24,7 +24,7 @@ def login(request):
     except KeyError:
         return HttpResponseBadRequest()
 
-    # Check authorization validity https://core.telegram.org/widgets/login#checking-authorization
+    # Check authorization validity (https://core.telegram.org/widgets/login#checking-authorization)
     data_check_string = '\n'.join(
         f'{k}={v}' for k, v in sorted(tg_oauth_data.items())
         if k != 'hash'
