@@ -10,6 +10,7 @@
 <body class="auth-telegram-page">
     <div class="auth-telegram-container">
         <div class="auth-telegram">
+            {% csrf_token %}
             <div id="telegram_user_id">
                 Login via Telegram
             </div>
@@ -23,14 +24,44 @@
                 data-request-access="write"
             ></script>
             <script type="text/javascript">
-                function onTelegramAuth(user) {
-                    const div = document.getElementById('telegram_user_id');
-                    div.textContent = user.id;
-                    console.log(user);
+                async function onTelegramAuth(user) {
+                    const csrf_token_input = document.querySelector('[name="csrfmiddlewaretoken"]');
+
+                    const formData = new FormData();
+                    formData.append('csrfmiddlewaretoken', csrf_token_input.value);
+                    formData.append('id', user.id);
+                    formData.append('first_name', user.first_name);
+                    formData.append('auth_date', user.auth_date);
+                    formData.append('hash', user.hash);
+
+                    if (user.last_name) {
+                        formData.append('last_name', user.last_name);
+                    }
+
+                    if (user.username) {
+                        formData.append('username', user.username);
+                    }
+
+                    if (user.photo_url) {
+                        formData.append('photo_url', user.photo_url);
+                    }
+
+                    const response = await fetch("{% url 'auth_telegram:login' %}", {
+                        method: 'post',
+                        body: formData
+                    });
+
+                    if (response.status === 200) {
+                        console.log(await response.text())
+                        // location.href = '/events';
+                    } else {
+                        // display message
+                    }
                 }
             </script>
             {# TODO: verify the authentication and the integrity of the data #}
             {# https://core.telegram.org/widgets/login#checking-authorization #}
+            {# TODO: move js code in a separate file #}
         </div>
     </div>
 </body>
