@@ -13,6 +13,7 @@ App that help traders to track the price of trading instruments. It sends notifi
    DEBUG=<DJANGO_DEBUG_MODE>        # Allowed values: True, False.
    
    TG_BOT_USERNAME=<USERNAME_OF_YOUR_TG_BOT>
+   TG_BOT_TOKEN=<TG_BOT_TOKEN>
    ```
 5. Move to `docker` directory:
    ```

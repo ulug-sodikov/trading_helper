@@ -3,7 +3,7 @@ from os import getenv
 from hashlib import sha256
 
 from dotenv import load_dotenv
-from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import loader
 
 
@@ -24,6 +24,7 @@ def login(request):
     except KeyError:
         return HttpResponseBadRequest()
 
+    # Check authorization validity https://core.telegram.org/widgets/login#checking-authorization
     data_check_string = '\n'.join(
         f'{k}={v}' for k, v in sorted(tg_oauth_data.items())
         if k != 'hash'
