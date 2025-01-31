@@ -56,6 +56,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# https://docs.djangoproject.com/en/5.1/topics/auth/customizing/#specifying-authentication-backends
 AUTHENTICATION_BACKENDS = [
     "auth_telegram.authentication_backend.TelegramAuthenticationBackend",
 ]
