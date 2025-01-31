@@ -56,6 +56,10 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "auth_telegram.authentication_backend.TelegramAuthenticationBackend",
+]
+
 ROOT_URLCONF = "trading_helper.urls"
 
 TEMPLATES = [
