@@ -7,9 +7,14 @@ services:
             - ../.env:/usr/src/app/.env
         working_dir: /usr/src/app
         command: [
-#            "python3", "trading_helper_web/manage.py", "migrate", "&&",
             "python3", "trading_helper_web/manage.py",
             "runserver", "0.0.0.0:8000"
         ]
         ports:
             - "127.0.0.77:80:8000"
+
+    metatrader5_api_service:
+        image: metatrader5_api
+        container_name: metatrader5_api_service
+        ports:
+            - "3000:3000"

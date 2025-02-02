@@ -1,0 +1,1 @@
+docker build -t metatrader5_api ../metatrader5_api
