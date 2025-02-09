@@ -1,0 +1,4 @@
+python-dotenv==0.21.1
+MetaTrader5==5.0.4424
+numpy==1.26.4
+aiohttp==3.8.2

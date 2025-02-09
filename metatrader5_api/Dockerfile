@@ -24,4 +24,6 @@ COPY ./root /
 # Make /scripts/autostart_script.sh file executable.
 RUN chmod +x /scripts/autostart_script.sh
 
+COPY ./server /server
+
 ENV MT5_TERMINAL_PATH="/config/.wine/drive_c/Program Files/MetaTrader 5/terminal64.exe"
