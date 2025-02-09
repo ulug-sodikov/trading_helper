@@ -33,7 +33,7 @@ async def websocket_handler(request):
             await ws.send_json({'symbol': symbol})
 
         try:
-            # Does the function of asyncio.sleep, too.
+            # Performs the role of asyncio.sleep, too.
             msg = await ws.receive(timeout=0.5)
         except asyncio.TimeoutError:
             pass

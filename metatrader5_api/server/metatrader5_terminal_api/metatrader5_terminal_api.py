@@ -11,7 +11,7 @@ class MetatraderTerminal:
         """
         Establish a connection with MetaTrader5 terminal.
         """
-        # Convert user credentials to proper data type.
+        # Convert user credentials to proper data types.
         if not mt5.initialize(
             self.path,
             login=int(account_number),
@@ -22,7 +22,7 @@ class MetatraderTerminal:
 
     def display_account_info(self):
         """
-        Get info on current (logged in) trading account.
+        Display info on current (logged in) trading account.
         """
         info = mt5.account_info()
         if info is None:
