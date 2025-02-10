@@ -43,7 +43,7 @@ class MetatraderTerminal:
         """
         tick = mt5.symbol_info_tick(symbol)
         if tick is None:
-            raise MT5TerminalAPIException()
+            raise MT5TerminalAPIException(f"{symbol} is not in MarketWatch window.")
 
         return tick
 

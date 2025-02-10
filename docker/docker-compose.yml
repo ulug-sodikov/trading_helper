@@ -11,7 +11,7 @@ services:
             "runserver", "0.0.0.0:8000"
         ]
         ports:
-            - "127.0.0.77:80:8000"  # Match this localhost ip to hostname (change /etc/hosts file).
+            - "127.0.0.77:80:8000"  # Match this localhost ip to domain name (change /etc/hosts file).
 
     metatrader5_api_service:
         image: metatrader5_api

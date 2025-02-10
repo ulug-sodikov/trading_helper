@@ -33,6 +33,8 @@ async def add_symbol(mt5_terminal, request):
 
 async def discard_symbol(request):
     symbol = request.match_info['symbol'].upper()
+    # TODO: remove symbol from MarketWatch window, otherwise
+    #       too many symbols can slow down internet speed.
     symbols_buffer.discard(symbol)
     return web.json_response({'symbols_buffer': list(symbols_buffer)})
 
