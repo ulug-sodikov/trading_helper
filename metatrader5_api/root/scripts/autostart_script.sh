@@ -14,4 +14,7 @@ if [ ! -f "/config/.wine/drive_c/Program Files/Python39/python.exe" ]; then
     wine pip install --no-cache-dir -r /server/requirements.txt
 fi
 
-# TODO: use enviromental variables instead of hardcoded pathes.
+# Launch server (interface that is available outside of container).
+wine python /server/server.py
+
+# TODO: use environmental variables instead of hardcoded pathes.

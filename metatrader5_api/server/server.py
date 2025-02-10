@@ -1,6 +1,10 @@
 import asyncio
+from functools import partial
 
 from aiohttp import web, WSMsgType
+
+from create_terminal_connection import create_terminal_connection
+from metatrader5_terminal_api.exceptions import MT5TerminalAPIException
 
 
 # Symbols, ticks of which will be sent to ws client.
@@ -11,26 +15,41 @@ async def get_symbols(request):
     return web.json_response({'symbols_buffer': list(symbols_buffer)})
 
 
-async def add_symbol(request):
-    symbol = request.match_info['symbol']
-    # TODO: check if symbol is valid before adding it to symbols buffer.
-    symbols_buffer.add(symbol)
+async def add_symbol(mt5_terminal, request):
+    symbol = request.match_info['symbol'].upper()
+
+    if symbol not in symbols_buffer:
+        # Add symbol to MarketWatch window. If symbol adding failed
+        # (e.g. symbol doesn't exist) return HTTP 404.
+        try:
+            mt5_terminal.add_to_marketwatch(symbol)
+        except MT5TerminalAPIException:
+            return web.HTTPNotFound()
+
+        symbols_buffer.add(symbol)
+
     return web.json_response({'symbols_buffer': list(symbols_buffer)})
 
 
 async def discard_symbol(request):
-    symbol = request.match_info['symbol']
+    symbol = request.match_info['symbol'].upper()
     symbols_buffer.discard(symbol)
     return web.json_response({'symbols_buffer': list(symbols_buffer)})
 
 
-async def websocket_handler(request):
+async def websocket_handler(mt5_terminal, request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
 
     while True:
         for symbol in symbols_buffer:
-            await ws.send_json({'symbol': symbol})
+            tick = mt5_terminal.get_last_tick(symbol)._asdict()
+            await ws.send_json({
+                'symbol': symbol,
+                'time': tick['time'],
+                'bid': tick['bid'],
+                'ask': tick['ask']
+            })
 
         try:
             # Performs the role of asyncio.sleep, too.
@@ -46,12 +65,13 @@ async def websocket_handler(request):
 
 
 def main():
+    mt5_terminal = create_terminal_connection()
     app = web.Application()
     app.add_routes([
         web.get('/symbols_buffer', get_symbols),
-        web.patch('/symbols_buffer/{symbol}', add_symbol),
+        web.patch('/symbols_buffer/{symbol}', partial(add_symbol, mt5_terminal)),
         web.delete('/symbols_buffer/{symbol}', discard_symbol),
-        web.get('/', websocket_handler),
+        web.get('/', partial(websocket_handler, mt5_terminal)),
     ])
     web.run_app(app)
 

@@ -1,6 +1,6 @@
 import MetaTrader5 as mt5
 
-from exceptions import MT5TerminalAPIException
+from .exceptions import MT5TerminalAPIException
 
 
 class MetatraderTerminal:
@@ -37,9 +37,24 @@ class MetatraderTerminal:
     def get_last_tick(self, symbol):
         """
         Get the last tick for instrument (symbol).
+
+        Note: Add symbol to MarkerWatch window before getting its tick,
+        otherwise None will be returned from mt5.symbol_info_tick(symbol).
         """
         tick = mt5.symbol_info_tick(symbol)
         if tick is None:
-            raise MT5TerminalAPIException(f"Invalid symbol {symbol}.")
+            raise MT5TerminalAPIException()
 
         return tick
+
+    def add_to_marketwatch(self, symbol):
+        """
+        Add a symbol to the MarketWatch window.
+        """
+        if not mt5.symbol_select(symbol, True):
+            raise MT5TerminalAPIException(f"Can't add {symbol} to MarketWatch window.")
+
+        return True
+
+
+# TODO: fix imports.
