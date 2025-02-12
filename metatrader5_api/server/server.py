@@ -11,6 +11,14 @@ from metatrader5_terminal_api.exceptions import MT5TerminalAPIException
 symbols_buffer = set()
 
 
+async def symbol_exists(mt5_terminal, request):
+    symbol = request.match_info['symbol'].upper()
+    if mt5_terminal.symbol_exists(symbol):
+        return web.Response()
+    else:
+        return web.HTTPNotFound()
+
+
 async def get_symbols(request):
     return web.json_response({'symbols_buffer': list(symbols_buffer)})
 
@@ -70,6 +78,7 @@ def main():
     mt5_terminal = create_terminal_connection()
     app = web.Application()
     app.add_routes([
+        web.get('/symbol_exists/{symbol}', partial(symbol_exists, mt5_terminal)),
         web.get('/symbols_buffer', get_symbols),
         web.patch('/symbols_buffer/{symbol}', partial(add_symbol, mt5_terminal)),
         web.delete('/symbols_buffer/{symbol}', discard_symbol),

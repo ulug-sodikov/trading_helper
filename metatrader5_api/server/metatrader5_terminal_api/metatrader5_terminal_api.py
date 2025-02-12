@@ -56,5 +56,13 @@ class MetatraderTerminal:
 
         return True
 
+    def symbol_exists(self, symbol):
+        """
+        Check if a symbol exists.
+        """
+        # Documentation doesn't mention that "symbol_info" method
+        # can be used without calling "symbol_select" method first.
+        return bool(mt5.symbol_info(symbol))
+
 
 # TODO: fix imports.
