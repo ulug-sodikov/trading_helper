@@ -17,6 +17,12 @@ class Notification(models.Model):
     tracking_price_type = models.CharField(max_length=9, choices=PriceType)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return (
+            f'IF {self.symbol} {self.tracking_price_type} {self.comparison_type} '
+            f'{self.target_price}, NOTIFY {self.user.username}'
+        )
+
     @classmethod
     def get_triggered_notifications(cls, symbol, bid, ask):
         """
@@ -52,9 +58,3 @@ class Notification(models.Model):
         )
 
         return cls.objects.filter(query, symbol=symbol)
-
-    def __str__(self):
-        return (
-            f'IF {self.symbol} {self.tracking_price_type} {self.comparison_type} '
-            f'{self.target_price}, NOTIFY {self.user.username}'
-        )
