@@ -25,7 +25,7 @@ App that help traders to track the price of trading instruments. It sends notifi
    - Wait until metatrader installation window is opened, then
      manually install metatrader via the opened window (installations 
      offered by the system can be denied).
-      ![Screenshot from 2025-02-12 08-03-18.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202025-02-12%2008-03-18.png)
+      file:///home/ulugbek/Pictures/Screenshots/metatrader.png
    - Wain until server is up (it happens silently in the background).
      To check if server is up, send HTTP GET request to 
      `http://localhost:8080/symbols_buffer`.
