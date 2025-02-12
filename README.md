@@ -28,6 +28,7 @@ App that help traders to track the price of trading instruments. It sends notifi
    - Wain until server is up (it happens silently in the background).
      To check if server is up, send HTTP GET request to 
      `http://localhost:8080/symbols_buffer`.
+
 3. Run `trading_helper_web_service`.
    - Add the following content to your `/etc/hosts` file:
       ```
