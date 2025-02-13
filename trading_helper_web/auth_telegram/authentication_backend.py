@@ -27,7 +27,7 @@ class TelegramAuthenticationBackend(BaseBackend):
             secret_key, data_check_string.encode(), sha256
         ).hexdigest()
 
-        if generated_hash == tg_oauth_data['hash']:
+        if generated_hash == tg_oauth_data.get('hash'):
             return self.get_or_create_user(str(tg_oauth_data['id']))
         else:
             return None
