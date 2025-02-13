@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import loader
 
@@ -20,7 +22,7 @@ def create_notification(request):
     notification = Notification(user=request.user)
     try:
         notification.symbol = data['symbol']
-        notification.target_price = data['target_price']
+        notification.target_price = Decimal(str(data['target_price']))
         notification.comparison_type = (
             Notification.ComparisonType[data['comparison_type']]
         )
