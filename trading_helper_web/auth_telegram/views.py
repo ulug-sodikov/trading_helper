@@ -24,7 +24,8 @@ def login_user(request):
         return HttpResponseBadRequest()
 
     user = authenticate(tg_oauth_data)
-    if user is not None:
-        login(request, user)
+    if user is None:
+        return HttpResponseBadRequest()
 
+    login(request, user)
     return HttpResponse(status=201)
