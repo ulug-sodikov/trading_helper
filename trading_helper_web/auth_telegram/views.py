@@ -27,4 +27,4 @@ def login_user(request):
     if user is not None:
         login(request, user)
 
-    return HttpResponse(f'username: {user.username}')
+    return HttpResponse(status=201)
