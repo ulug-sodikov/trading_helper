@@ -1,12 +1,54 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Price notifications</title>
+    <link rel="stylesheet" href="{% static 'price_notifications/style.css' %}">
 </head>
 <body>
-    <div>
-        Create price notifications.
+    <div class="page-content">
+        <div class="content-container">
+            <div class="instrument-details">
+                <div class="image-container">
+                    <img src="{% static 'price_notifications/gold.svg' %}"
+                         alt="GOLD"
+                         width="200"
+                    />
+                </div>
+                <div class="instrument-info">
+                    <div class="instrument-symbol">
+                        XAUUSD
+                    </div>
+                    <div class="instrument-price">
+                        <div class="instrument-price__number"
+                             id="instrument-price-number"
+                        >
+                            2985.66
+                        </div>
+                        <div class="instrument-price__currency">
+                            USD
+                        </div>
+                    </div>
+                    <div class="instrument-spread-info"
+                         id="instrument-spread-info"
+                    >
+                        SPREAD 12 PIPS
+                    </div>
+                </div>
+            </div>
+            <div class="notifications">
+                <button class="add-notification-button">
+                    + ADD NOTIFICATION
+                </button>
+            </div>
+            <script
+                data-ws-url="ws://localhost:8080/"
+                type="text/javascript"
+                src="{% static 'price_notifications/script.js' %}"
+            ></script>
+        </div>
     </div>
 </body>
 </html>

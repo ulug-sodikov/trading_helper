@@ -1,0 +1,52 @@
+.content-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.instrument-details {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    width: 100%;
+}
+
+.instrument-info {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1rem;
+}
+
+.instrument-symbol {
+    font-size: 2rem;
+}
+
+.instrument-price {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+}
+
+.instrument-price__number {
+    font-size: 2rem;
+}
+
+.instrument-price__currency {
+    align-self: end;
+    padding-bottom: 4px;
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.add-notification-button {
+    text-align: left;
+}
