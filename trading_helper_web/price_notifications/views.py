@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import loader
 
 from .models import Notification
+from .adjust_mt5_buffer import adjust_mt5_buffer
 
 
 def index(request):
@@ -33,5 +34,6 @@ def create_notification(request):
         return HttpResponseBadRequest("Missing required param.")
     else:
         notification.save()
+        adjust_mt5_buffer()
 
     return HttpResponse(status=201)
