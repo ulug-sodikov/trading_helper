@@ -57,19 +57,19 @@
                     <div class="notification-containers">
                         {% for notification in notifications %}
                             <div class="notification-container">
-                                <div class="notification_container__unit">
+                                <div class="notification-container__unit">
                                     {{ notification.symbol }}
                                 </div>
-                                <div class="notification_container__unit">
+                                <div class="notification-container__unit">
                                     {{ notification.tracking_price_type }}
                                 </div>
-                                <div class="notification_container__unit">
+                                <div class="notification-container__unit">
                                     {{ notification.comparison_type }}
                                 </div>
-                                <div class="notification_container__unit">
+                                <div class="notification-container__unit">
                                     {{ notification.target_price }}
                                 </div>
-                                <div class="notification_container__unit">
+                                <div class="notification-container__unit">
                                     2558.66
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                             <option value="GREATER_THAN">GREATER THAN</option>
                             <option value="LESS_THAN">LESS THAN</option>
                         </select>
-                        <input name="target_price" type="text"
+                        <input name="target_price" type="text" autocomplete="off"
                                class="fields-container__unit"
                         />
                         <input type="submit" value="SAVE"
