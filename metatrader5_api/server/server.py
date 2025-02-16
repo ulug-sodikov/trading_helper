@@ -14,7 +14,7 @@ symbols_buffer = set()
 async def symbol_exists(mt5_terminal, request):
     symbol = request.match_info['symbol'].upper()
     if mt5_terminal.symbol_exists(symbol):
-        return web.Response()
+        return web.HTTPOk()
     else:
         return web.HTTPNotFound()
 
