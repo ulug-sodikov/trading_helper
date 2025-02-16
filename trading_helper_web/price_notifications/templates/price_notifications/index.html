@@ -10,6 +10,9 @@
 <body>
     <div class="page-content">
         <div class="content-container">
+            {% if error_message %}
+                {{ error_message }}
+            {% endif %}
             <div class="instrument-details">
                 <div class="image-container">
                     <img src="{% static 'price_notifications/gold.svg' %}"
@@ -38,10 +41,79 @@
                     </div>
                 </div>
             </div>
-            <div class="notifications">
-                <button class="add-notification-button">
-                    + ADD NOTIFICATION
-                </button>
+            {% if notifications %}
+                <div class="notifications">
+                    <div class="labels-container">
+                        <div class="labels-container__label-short">
+                            SYMBOL
+                        </div>
+                        <div class="labels-container__label-middle">
+                            NOTIFY IF
+                        </div>
+                        <div class="labels-container__label-short">
+                            LAST PRICE
+                        </div>
+                    </div>
+                    <div class="notification-containers">
+                        {% for notification in notifications %}
+                            <div class="notification-container">
+                                <div class="notification_container__unit">
+                                    {{ notification.symbol }}
+                                </div>
+                                <div class="notification_container__unit">
+                                    {{ notification.tracking_price_type }}
+                                </div>
+                                <div class="notification_container__unit">
+                                    {{ notification.comparison_type }}
+                                </div>
+                                <div class="notification_container__unit">
+                                    {{ notification.target_price }}
+                                </div>
+                                <div class="notification_container__unit">
+                                    2558.66
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="create-notification">
+                <form action="{% url 'price_notifications:create_notification' %}"
+                      method="post" class="notification-form"
+                >
+                    {% csrf_token %}
+                    <div class="labels-container">
+                        <div class="labels-container__label-short">
+                            SYMBOL
+                        </div>
+                        <div class="labels-container__label-long">
+                            NOTIFY IF
+                        </div>
+                    </div>
+                    <div class="fields-container">
+                        <input name="symbol" type="text" autocomplete="off"
+                               class="fields-container__unit"
+                        />
+                        <select name="tracking_price_type"
+                                class="fields-container__unit"
+                        >
+                            <option value="BID_PRICE">BID PRICE</option>
+                            <option value="ASK_PRICE">ASK PRICE</option>
+                        </select>
+                        <select name="comparison_type"
+                                class="fields-container__unit"
+                        >
+                            <option value="GREATER_THAN">GREATER THAN</option>
+                            <option value="LESS_THAN">LESS THAN</option>
+                        </select>
+                        <input name="target_price" type="text"
+                               class="fields-container__unit"
+                        />
+                        <input type="submit" value="SAVE"
+                               class="fields-container__unit"
+                        />
+                    </div>
+                </form>
             </div>
             <script
                 data-ws-url="ws://localhost:8080/"
