@@ -7,7 +7,7 @@ class PriceNotificationsConfig(AppConfig):
     name = "price_notifications"
 
     def ready(self):
-        # XAUUSD real-time price is displayed in '/price_notification/' page.
+        # XAUUSD real-time price is displayed in '/price_notification/' page
         requests.patch(
             'http://metatrader5_api_service:8080/symbol_exists/XAUUSD'
         )
