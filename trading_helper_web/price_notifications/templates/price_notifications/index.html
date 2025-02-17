@@ -64,7 +64,7 @@
                                     {{ notification.comparison_type }}
                                 </div>
                                 <div class="notification-container__unit">
-                                    {{ notification.target_price }}
+                                    {{ notification.target_price.normalize }}
                                 </div>
                                 <div class="notification-container__unit"
                                      data-track-symbol="{{ notification.symbol }}"
