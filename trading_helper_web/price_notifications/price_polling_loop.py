@@ -23,4 +23,5 @@ def start_price_polling_loop():
                     bid=Decimal(str(data['bid'])),
                     ask=Decimal(str(data['ask']))
             ):
+                # Notify telegram users.
                 notification.delete()
