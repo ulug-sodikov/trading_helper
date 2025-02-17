@@ -1,9 +1,11 @@
 const WS_URL = document.currentScript.getAttribute('data-ws-url');
 
-const error_message = document.currentScript.getAttribute('data-error-message');
-if (error_message) {
-    alert(error_message);
+const errorMessage = document.currentScript.getAttribute('data-error-message');
+if (errorMessage) {
+    alert(errorMessage);
 }
+
+const realTimePriceDivs = document.querySelectorAll("[data-track-symbol]");
 
 const connectToWSServer = (onMessage) => {
     const socket = new WebSocket(WS_URL);
@@ -24,6 +26,12 @@ const onWsMessage = (event) => {
         priceDiv.textContent = `${tick.bid}`;
         spreadDiv.textContent = `SPREAD ${xauusdSpread} PIPS`;
     }
+
+    realTimePriceDivs.forEach((elem) => {
+        if (elem.dataset.trackSymbol === tick.symbol) {
+            elem.textContent = `${tick.bid}`;
+        }
+    });
 };
 
 connectToWSServer(onWsMessage);
