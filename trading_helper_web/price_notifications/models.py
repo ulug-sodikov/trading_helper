@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 
 
@@ -15,6 +16,7 @@ class Notification(models.Model):
     target_price = models.DecimalField(max_digits=50, decimal_places=30)
     comparison_type = models.CharField(max_length=12, choices=ComparisonType)
     tracking_price_type = models.CharField(max_length=9, choices=PriceType)
+    created_at = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
