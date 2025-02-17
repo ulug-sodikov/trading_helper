@@ -17,7 +17,9 @@ def index(request):
         return HttpResponseRedirect(reverse('auth_telegram:index'))
 
     template = loader.get_template('price_notifications/index.html')
-    notifications = Notification.objects.filter(user=request.user)
+    notifications = (
+        Notification.objects.filter(user=request.user).order_by('-created_at')
+    )
     context = {'notifications': notifications}
 
     return HttpResponse(template.render(context, request))
@@ -34,7 +36,9 @@ def create_notification(request):
             context={
                 'error_message': error_message,
                 'notifications': (
-                    Notification.objects.filter(user=request.user)
+                    Notification.objects
+                    .filter(user=request.user)
+                    .order_by('-created_at')
                 )
             }
         )
