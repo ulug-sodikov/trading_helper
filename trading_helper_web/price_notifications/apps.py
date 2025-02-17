@@ -16,7 +16,7 @@ class PriceNotificationsConfig(AppConfig):
             'http://metatrader5_api_service:8080/symbol_exists/XAUUSD'
         )
 
-        # Since PriceNotificationsConfig.ready method might be executed twice,
+        # Since PriceNotificationsConfig.ready method might be called twice,
         # price-polling-loop thread existence should be checked before creating
         # it, otherwise two threads can be created
         for _thread in threading.enumerate():

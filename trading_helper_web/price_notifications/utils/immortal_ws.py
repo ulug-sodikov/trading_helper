@@ -25,7 +25,6 @@ class ImmortalWebSocket(websocket.WebSocket):
                     ConnectionResetError,
                     websocket.WebSocketConnectionClosedException
             ):
-                print("reconnection")
                 time.sleep(2)
 
     def recv(self):
