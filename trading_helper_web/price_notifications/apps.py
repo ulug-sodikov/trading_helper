@@ -1,3 +1,4 @@
+import sys
 import threading
 
 import requests
@@ -11,19 +12,20 @@ class PriceNotificationsConfig(AppConfig):
     name = "price_notifications"
 
     def ready(self):
-        # XAUUSD real-time price is displayed in '/price_notification/' page
-        requests.patch(
-            'http://metatrader5_api_service:8080/symbol_exists/XAUUSD'
-        )
-
-        # Since PriceNotificationsConfig.ready method might be called twice,
-        # price-polling-loop thread existence should be checked before creating
-        # it, otherwise two threads can be created
-        for _thread in threading.enumerate():
-            if _thread.name == 'price-polling-loop':
-                break
-        else:
-            new_thread = threading.Thread(
-                target=start_price_polling_loop, name='price-polling-loop'
+        if 'runserver' not in sys.argv:
+            # XAUUSD real-time price is displayed in '/price_notification/' page
+            requests.patch(
+                'http://metatrader5_api_service:8080/symbol_exists/XAUUSD'
             )
-            new_thread.start()
+
+            # Since PriceNotificationsConfig.ready method might be called twice,
+            # price-polling-loop thread existence should be checked before creating
+            # it, otherwise two threads can be created
+            for _thread in threading.enumerate():
+                if _thread.name == 'price-polling-loop':
+                    break
+            else:
+                new_thread = threading.Thread(
+                    target=start_price_polling_loop, name='price-polling-loop'
+                )
+                new_thread.start()
