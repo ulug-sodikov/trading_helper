@@ -10,9 +10,6 @@
 <body>
     <div class="page-content">
         <div class="content-container">
-            {% if error_message %}
-                {{ error_message }}
-            {% endif %}
             <div class="instrument-details">
                 <div class="image-container">
                     <img src="{% static 'price_notifications/gold.svg' %}"
@@ -117,6 +114,7 @@
             </div>
             <script
                 data-ws-url="ws://localhost:8080/"
+                data-error-message="{{ error_message }}"
                 type="text/javascript"
                 src="{% static 'price_notifications/script.js' %}"
             ></script>

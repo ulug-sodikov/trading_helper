@@ -1,5 +1,10 @@
 const WS_URL = document.currentScript.getAttribute('data-ws-url');
 
+const error_message = document.currentScript.getAttribute('data-error-message');
+if (error_message) {
+    alert(error_message);
+}
+
 const connectToWSServer = (onMessage) => {
     const socket = new WebSocket(WS_URL);
     // If connection is failed reestablish connection after 2 seconds.
