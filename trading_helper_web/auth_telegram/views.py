@@ -28,4 +28,5 @@ def login_user(request):
         return HttpResponseBadRequest()
 
     login(request, user)
-    return HttpResponse(status=201)
+
+    return HttpResponse()

@@ -52,10 +52,9 @@
                     });
 
                     if (response.status === 200) {
-                        console.log(await response.text())
-                        // location.href = '/events';
+                        location.href = '/price_notifications';
                     } else {
-                        // display message
+                        console.error('Login failed!');
                     }
                 }
             </script>
