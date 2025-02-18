@@ -8,14 +8,11 @@ async def stop_alarm(queue, query):
 
 
 def _filter(query):
-    if query.data.startswith('stop_alarm'):
-        return True
-    else:
-        return False
+    return query.data.startswith('stop_alarm')
 
 
 def create_dispatcher(queue):
     dp = Dispatcher()
-    dp.callback_query.register(partial(echo, queue), _filter)
+    dp.callback_query.register(partial(stop_alarm, queue), _filter)
 
     return dp

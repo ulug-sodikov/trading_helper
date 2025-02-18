@@ -13,8 +13,8 @@ load_dotenv()
 
 def main():
     loop = asyncio.new_event_loop()
-    bot = Bot(token=getenv("TG_BOT_TOKEN"))
     queue = asyncio.Queue()
+    bot = Bot(token=getenv("TG_BOT_TOKEN"))
     dp = create_dispatcher(queue)
     loop.create_task(dp.start_polling(bot))
     run_server(loop, queue)
