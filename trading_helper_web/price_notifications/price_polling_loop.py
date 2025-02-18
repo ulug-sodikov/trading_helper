@@ -7,6 +7,9 @@ from .utils.immortal_ws import ImmortalWebSocket
 def start_price_polling_loop():
     from .models import Notification
 
+    from .adjust_mt5_buffer import adjust_mt5_buffer
+    adjust_mt5_buffer()
+
     ws = ImmortalWebSocket()
     ws.connect('ws://metatrader5_api_service:8080/')
 
