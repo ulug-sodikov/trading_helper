@@ -1,0 +1,1 @@
+docker build -t notifications_tg_bot_api ../notifications_tg_bot_api
