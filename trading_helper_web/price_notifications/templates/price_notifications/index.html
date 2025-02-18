@@ -52,7 +52,6 @@
                         </div>
                     </div>
                     <div class="notification-containers">
-                        {% csrf_token %}
                         {% for notification in notifications %}
                             <div class="notification-container">
                                 <div class="notification-container__unit">
@@ -68,14 +67,14 @@
                                     {{ notification.target_price.normalize }}
                                 </div>
                                 <div class="notification-container__unit">
-                                    <div class="unit-roommate"
-                                         data-track-symbol="{{ notification.symbol }}"
+                                    <div data-track-symbol="{{ notification.symbol }}"
+                                         class="unit-roommate"
                                     >
                                         0000.00
                                     </div>
                                     <div class="unit-roommate unit-roommate--right">
-                                        <button class="notification-trash-button"
-                                                onclick="deleteNotification({{ notification.id }})"
+                                        <button onclick="deleteNotification({{ notification.id }})"
+                                                class="notification-trash-button"
                                         >
                                             <img src="{% static 'price_notifications/images/trash_icon.svg' %}"
                                                  alt="DELETE"

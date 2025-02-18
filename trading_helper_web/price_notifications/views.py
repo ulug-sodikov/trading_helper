@@ -85,7 +85,7 @@ def create_notification(request):
 
 def delete_notification(request, pk):
     if not request.user.is_authenticated:
-        return HttpResponseBadRequest('unauthorized')
+        return HttpResponseBadRequest('Unauthorized.')
 
     if request.method != 'DELETE':
         return HttpResponseNotAllowed(['DELETE'])
