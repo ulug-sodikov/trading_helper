@@ -1,4 +1,5 @@
 const WS_URL = document.currentScript.getAttribute('data-ws-url');
+const CSRF_TOKEN = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 const errorMessage = document.currentScript.getAttribute('data-error-message');
 if (errorMessage) {
@@ -35,3 +36,15 @@ const onWsMessage = (event) => {
 };
 
 connectToWSServer(onWsMessage);
+
+const deleteNotification = async (notificationId) => {
+    if (confirm('Are you sure you want to delete this notification?')) {
+        await fetch(`/price_notifications/delete_notification/${notificationId}/`, {
+            method: 'delete',
+            headers: {
+                'X-CSRFToken': CSRF_TOKEN
+            },
+        });
+        location.reload();
+    }
+};

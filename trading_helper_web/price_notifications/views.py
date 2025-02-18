@@ -2,11 +2,12 @@ import decimal
 
 import requests
 from django.http import (
-    HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+    HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed,
+    HttpResponseBadRequest
 )
 from django.template import loader
 from django.urls import reverse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Notification
 from .adjust_mt5_buffer import adjust_mt5_buffer
@@ -27,7 +28,7 @@ def index(request):
 
 def create_notification(request):
     if not request.user.is_authenticated:
-        return HttpResponseBadRequest("Unauthenticated.")
+        return HttpResponseRedirect(reverse('auth_telegram:index'))
 
     def create_error_context_response(error_message):
         return render(
@@ -80,3 +81,17 @@ def create_notification(request):
     adjust_mt5_buffer()
 
     return HttpResponseRedirect(reverse('price_notifications:index'))
+
+
+def delete_notification(request, pk):
+    if not request.user.is_authenticated:
+        return HttpResponseBadRequest('unauthorized')
+
+    if request.method != 'DELETE':
+        return HttpResponseNotAllowed(['DELETE'])
+
+    notification = get_object_or_404(Notification, pk=pk)
+    notification.delete()
+    adjust_mt5_buffer()
+
+    return HttpResponse()

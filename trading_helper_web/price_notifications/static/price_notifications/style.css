@@ -68,6 +68,23 @@
     align-items: center;
 }
 
+.unit-roommate {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+}
+
+.unit-roommate--right {
+    justify-content: end;
+    padding-right: 1rem;
+}
+
+.notification-trash-button {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
 .create-notification {
     display: flex;
     flex-direction: row;
