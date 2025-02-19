@@ -59,7 +59,8 @@ App that help traders to track the price of trading instruments. It sends notifi
       docker compose -f docker-compose.yml up -d trading_helper_web_service
       ```
 ## Future improvements:
-- Reconsider running price polling loop script in the `AppConfig.ready()` ( in `trading_helper_web_sevice`)
-  since it accesses database during initialization.
-- Refresh the page automatically (in `trading_helper_web_sevice`'s frontend), when real-time tick price
-  hits target price.
+- Reconsider running price polling loop script in the `AppConfig.ready()` 
+  (in `trading_helper_web_sevice`) since it accesses database during 
+  initialization.
+- Refresh the page automatically (in `trading_helper_web_sevice`'s frontend), 
+  when real-time tick price hits target price.
