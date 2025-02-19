@@ -15,7 +15,7 @@ class PriceNotificationsConfig(AppConfig):
         if 'runserver' in sys.argv:
             # XAUUSD real-time price is displayed in '/price_notification/' page
             requests.patch(
-                'http://metatrader5_api_service:8080/symbol_exists/XAUUSD'
+                'http://metatrader5_api_service:8080/symbols_buffer/XAUUSD'
             )
 
             # Since PriceNotificationsConfig.ready method might be called twice,
