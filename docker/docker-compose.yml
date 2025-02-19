@@ -23,13 +23,13 @@ services:
             - "3000:3000"
             - "8080:8080"
 
-    notifications_tg_bot_api_service:
-        image: notifications_tg_bot_api
-        container_name: notifications_tg_bot_api_service
+    tg_bot_notifications_api_service:
+        image: tg_bot_notifications_api
+        container_name: tg_bot_notifications_api_service
         volumes:
-            - ../notifications_tg_bot_api:/usr/src/app/notifications_tg_bot_api
+            - ../tg_bot_notifications_api:/usr/src/app/tg_bot_notifications_api
             - ../.env:/usr/src/app/.env
-        working_dir: /usr/src/app/notifications_tg_bot_api
+        working_dir: /usr/src/app/tg_bot_notifications_api
         command: [
             "python3", "main.py"
         ]
