@@ -1,5 +1,5 @@
 # Trading Helper 📈
-App that help traders to track the price of trading instruments. It sends notifications to telegram if the price hits specified value.\n
+App that help traders to track the price of trading instruments. It sends notifications to telegram if the price hits specified value.<br/>
 Demo: https://www.youtube.com/watch?v=nwFHnllkgP4
 ## How to run the whole project?
 1. Create `.env` file in the project's root directory.
