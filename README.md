@@ -29,14 +29,34 @@ App that help traders to track the price of trading instruments. It sends notifi
      To check if server is up, send HTTP GET request to 
      `http://localhost:8080/symbols_buffer`.
 
-3. Run `trading_helper_web_service`.
+3. Run `tg_bot_notifications_api_service`.
+   - Create a telegram bot by sending `/newbot` to `@BotFather`.
+   - Add the following variables to `.env` file in accordance to 
+     your newly created telegram bot:
+      ```
+      TG_BOT_USERNAME=<TG_BOT_USERNAME>     # e.g. 'my_favorife_bot'
+      TG_BOT_TOKEN=<TG_BOT_TOKEN>
+      ```
+   - Move to `docker` directory.
+      ```
+      cd docker/
+      ```
+   - Build docker image of tg bot notifications api service.
+      ```
+      bash build_tg_bot_notifications_api_image.sh
+      ```
+   - Run docker container:  
+      ```
+      docker compose -f docker-compose.yml up -d tg_bot_notifications_api_service
+      ```
+
+4. Run `trading_helper_web_service`.
    - Add the following content to your `/etc/hosts` file:
       ```
       127.0.0.77 www.tradinghelper.com
       ```
-   - Create a telegram bot by sending `/newbot` to `@BotFather`.
    - Send the `/setdomain` command to `@Botfather` to link 
-     `www.tradinghelper.com` domain name to newly created bot.
+     `www.tradinghelper.com` domain name to your telegram bot (from step 3).
    - Add the following variables to `.env` file:
       ```
       SECRET_KEY=<DJANGO_SECRET_KEY>
@@ -57,7 +77,8 @@ App that help traders to track the price of trading instruments. It sends notifi
    - Run docker container:  
       ```
       docker compose -f docker-compose.yml up -d trading_helper_web_service
-      ```
+      ``` 
+
 ## Future improvements:
 - Reconsider running price polling loop script in the `AppConfig.ready()` 
   (in `trading_helper_web_sevice`) since it accesses database during 
