@@ -53,7 +53,7 @@ App that help traders to track the price of trading instruments. It sends notifi
       ```
       bash build_trading_helper_web_image.sh
       ```
-   - Migrate.
+   - Migrate (Create tables in database).
    - Run docker container:  
       ```
       docker compose -f docker-compose.yml up -d trading_helper_web_service
