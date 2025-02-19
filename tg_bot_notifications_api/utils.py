@@ -1,3 +1,6 @@
+from aiogram.utils.keyboard import InlineKeyboardMarkup, InlineKeyboardButton
+
+
 def get_notification_key(notification):
     key_parts = []
     try:
@@ -8,3 +11,9 @@ def get_notification_key(notification):
         return None
 
     return '_'.join(map(str, key_parts))
+
+
+def make_notification_inline_keyboard(key):
+    button = InlineKeyboardButton(text='Stop', callback_data=f'stop:{key}')
+
+    return InlineKeyboardMarkup(inline_keyboard=[[button]])

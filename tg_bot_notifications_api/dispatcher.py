@@ -3,19 +3,20 @@ from functools import partial
 from aiogram import Dispatcher
 
 
-async def stop_notifications(stopping_notifications, query):
-    # stopping_notifications.add(query.data)
-    await query.message.answer('fine!')
+async def stop_notifications(running_notifications, query):
+    key = query.data.removeprefix('stop:')
+    running_notifications.discard(key)
+    await query.answer('Notification stopped')
 
 
 def _filter(query):
-    return query.data.startswith('stop_alarm')
+    return query.data.startswith('stop:')
 
 
-def create_dispatcher(stopping_notifications):
+def create_dispatcher(running_notifications):
     dp = Dispatcher()
     dp.callback_query.register(
-        partial(stop_notifications, stopping_notifications), _filter
+        partial(stop_notifications, running_notifications), _filter
     )
 
     return dp

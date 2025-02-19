@@ -14,19 +14,19 @@ load_dotenv()
 
 def main():
     loop = asyncio.new_event_loop()
-    recent_notifications = asyncio.Queue()
-    stopping_notifications = set()
+    new_notifications = asyncio.Queue()
+    running_notifications = set()
 
     bot = Bot(token=getenv("TG_BOT_TOKEN"))
-    dp = create_dispatcher(stopping_notifications)
+    dp = create_dispatcher(running_notifications)
     loop.create_task(dp.start_polling(bot))
 
     loop.create_task(bot_send_notifications(
-        bot, recent_notifications, stopping_notifications
+        bot, new_notifications, running_notifications
     ))
     # run_server() called last, since it runs the event loop by calling
     # loop.run_until_complete(run_app()) under the hood
-    run_server(loop, recent_notifications)
+    run_server(loop, new_notifications)
 
 
 if __name__ == "__main__":

@@ -4,20 +4,20 @@ from functools import partial
 from aiohttp import web
 
 
-async def notify(recent_notifications, request):
+async def notify(new_notifications, request):
     try:
         data = await request.json()
     except json.JSONDecodeError:
         return web.HTTPBadRequest()
 
-    recent_notifications.put_nowait(data)
+    new_notifications.put_nowait(data)
 
     return web.HTTPOk()
 
 
-def run_server(loop, recent_notifications):
+def run_server(loop, new_notifications):
     app = web.Application()
     app.add_routes([
-        web.post('/notify', partial(notify, recent_notifications))
+        web.post('/notify', partial(notify, new_notifications))
     ])
     web.run_app(app, loop=loop, port=8040)
