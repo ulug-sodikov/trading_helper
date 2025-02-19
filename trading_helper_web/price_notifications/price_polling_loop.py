@@ -1,7 +1,21 @@
 import json
 from decimal import Decimal
 
+import requests
+
 from .utils.immortal_ws import ImmortalWebSocket
+
+
+def create_request_json(notification):
+    return {
+        'tg_user_id': notification.user.username,
+        'text': (
+            f'{notification.symbol} {notification.tracking_price_type} '
+            f'hits {notification.target_price.normalize()}'
+        ),
+        'notification_id': notification.id,
+        'timestamp': int(notification.created_at.timestamp()),
+    }
 
 
 def start_price_polling_loop():
@@ -26,5 +40,8 @@ def start_price_polling_loop():
                     bid=Decimal(str(data['bid'])),
                     ask=Decimal(str(data['ask']))
             ):
-                # Notify telegram users.
+                requests.post(
+                    'http://tg_bot_notifications_api_service:8040/notify',
+                    json=create_request_json(notification)
+                )
                 notification.delete()
