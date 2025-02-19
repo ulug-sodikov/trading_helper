@@ -35,7 +35,7 @@ App that help traders to track the price of trading instruments. It sends notifi
      your newly created telegram bot:
       ```
       TG_BOT_USERNAME=<USERNAME_OF_YOUR_TG_BOT>   # e.g. 'my_favorife_bot'
-      TG_BOT_TOKEN=<TG_BOT_TOKEN>
+      TG_BOT_TOKEN=<TOKEN_OF_YOUR_TG_BOT>
       ```
    - Move to `docker` directory.
       ```
