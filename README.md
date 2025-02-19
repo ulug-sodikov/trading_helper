@@ -25,7 +25,7 @@ App that help traders to track the price of trading instruments. It sends notifi
    - Wait until metatrader installation window is opened, then
      manually install metatrader5 via the opened window (installations 
      offered by the system can be denied).
-   - Wain until server is up (it happens silently in the background).
+   - Wait until server is up (it happens silently in the background).
      To check if server is up, send HTTP GET request to 
      `http://localhost:8080/symbols_buffer`.
 
