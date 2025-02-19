@@ -18,12 +18,12 @@ def main():
     running_notifications = set()
 
     bot = Bot(token=getenv("TG_BOT_TOKEN"))
-    dp = create_dispatcher(running_notifications)
-    loop.create_task(dp.start_polling(bot))
-
     loop.create_task(bot_send_notifications(
         bot, new_notifications, running_notifications
     ))
+    dp = create_dispatcher(running_notifications)
+    loop.create_task(dp.start_polling(bot))
+
     # run_server() called last, since it runs the event loop by calling
     # loop.run_until_complete(run_app()) under the hood
     run_server(loop, new_notifications)
