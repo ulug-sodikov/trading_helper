@@ -6,5 +6,5 @@ def get_notification_key(notification):
         key_parts.append(notification['timestamp'])
     except KeyError:
         return None
-    print(key_parts)
+
     return '_'.join(map(str, key_parts))
