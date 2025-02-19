@@ -24,13 +24,13 @@ const onWsMessage = (event) => {
         const xauusdSpread = tick.ask*100 - tick.bid*100;
         const priceDiv = document.getElementById('instrument-price-number');
         const spreadDiv = document.getElementById('instrument-spread-info');
-        priceDiv.textContent = `${tick.bid}`;
+        priceDiv.textContent = `${tick.ask}`;
         spreadDiv.textContent = `SPREAD ${xauusdSpread} PIPS`;
     }
 
     realTimePriceDivs.forEach((elem) => {
         if (elem.dataset.trackSymbol === tick.symbol) {
-            elem.textContent = `${tick.bid}`;
+            elem.textContent = `${tick.ask}`;
         }
     });
 };
