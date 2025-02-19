@@ -34,7 +34,7 @@ App that help traders to track the price of trading instruments. It sends notifi
    - Add the following variables to `.env` file in accordance to 
      your newly created telegram bot:
       ```
-      TG_BOT_USERNAME=<TG_BOT_USERNAME>     # e.g. 'my_favorife_bot'
+      TG_BOT_USERNAME=<USERNAME_OF_YOUR_TG_BOT>   # e.g. 'my_favorife_bot'
       TG_BOT_TOKEN=<TG_BOT_TOKEN>
       ```
    - Move to `docker` directory.
@@ -61,9 +61,6 @@ App that help traders to track the price of trading instruments. It sends notifi
       ```
       SECRET_KEY=<DJANGO_SECRET_KEY>
       DEBUG=<DJANGO_DEBUG_MODE>        # Allowed values: True, False.
-   
-      TG_BOT_USERNAME=<USERNAME_OF_YOUR_TG_BOT>
-      TG_BOT_TOKEN=<TG_BOT_TOKEN>
       ```
    - Move to `docker` directory.
       ```
