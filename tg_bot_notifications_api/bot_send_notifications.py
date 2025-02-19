@@ -22,4 +22,4 @@ async def send_notifications_loop(bot, notification, running_notifications):
             text=notification['text'],
             reply_markup=make_notification_inline_keyboard(key)
         )
-        await asyncio.sleep(2)
+        await asyncio.sleep(1)
