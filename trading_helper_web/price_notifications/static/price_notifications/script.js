@@ -45,6 +45,6 @@ const deleteNotification = async (notificationId) => {
                 'X-CSRFToken': CSRF_TOKEN
             },
         });
-        location.reload();
+        location.href = '/price_notifications/';
     }
 };
