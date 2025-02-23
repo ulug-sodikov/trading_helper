@@ -1,3 +1,5 @@
+"use strict";
+
 const WS_URL = document.currentScript.getAttribute('data-ws-url');
 const CSRF_TOKEN = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
